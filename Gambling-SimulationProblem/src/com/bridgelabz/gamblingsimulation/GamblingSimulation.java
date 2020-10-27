@@ -85,6 +85,7 @@ public class GamblingSimulation
 			}
 		}
 		System.out.println("maxmimun amount "+winmax+" is won on Day "+windayCount);
+		System.out.println("Lucky day: "+windayCount);
 		for(int counter=0;counter<loss.length;counter++)
 		{
 			if(loss[counter]>lossmax)
@@ -94,15 +95,34 @@ public class GamblingSimulation
 			}
 		}
 		System.out.println("maxmimun amount "+lossmax+" is lost on Day "+lossdayCount);
+		System.out.println("Un-Lucky day: "+lossdayCount);
+	}
+	
+	public void playGame()
+	{
+		betDays();
+		maxAmount();
 	}
 	
 	public static void main(String[] args)
 	{
+		int play = 1;
 		System.out.println("Welcome to Gambling Simulation Project");
 		System.out.println("Gambler started with "+Stake+" rupees");
 		GamblingSimulation gamble = new GamblingSimulation();
-		gamble.betDays();
-		gamble.maxAmount();
+		gamble.playGame();
+		Random random = new Random();
+		int playChoice = random.nextInt(2);
+		if(playChoice == play)
+		{
+			System.out.println("You won! Continue to play");
+			gamble.playGame();
+		}
+		else
+		{
+			System.out.println("You lost");
+		}
+		System.out.println("Game over");
 	}
 	
 }
